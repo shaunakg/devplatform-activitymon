@@ -55,8 +55,8 @@ func main() {
 	}
 
 	// If the timestamp is less than 30 minutes ago, exit.
-	if healthz.LastHeartbeat > (time.Now().Unix() - 1800) {
-		fmt.Println("Activity in the last 30 minutes, timestamp: ", healthz.LastHeartbeat)
+	if (time.Now().Unix() - healthz.LastHeartbeat) < 1800 {
+		fmt.Println("Activity in the last 30 minutes, timestamp: ", healthz.LastHeartbeat, "difference from now: ", time.Now().Unix()-healthz.LastHeartbeat)
 		os.Exit(0)
 	}
 
